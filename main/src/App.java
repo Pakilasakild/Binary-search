@@ -17,7 +17,7 @@ public class App {
         System.out.println();
 
         // Search for specific values
-        int[] keysToSearch = {1, 9};
+        int[] keysToSearch = { 1, 9 };
         for (int key : keysToSearch) {
             if (tree.search(key))
                 System.out.println("Key " + key + " found in the BST.");

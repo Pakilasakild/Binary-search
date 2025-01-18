@@ -1,53 +1,53 @@
 public class BinarySearchTree {
-    Node root;
+    Node node;
 
     public BinarySearchTree() {
-        root = null;
+        node = null;
     }
 
     // Method to insert a new key
     void insert(int key) {
-        root = insertRec(root, key);
+        node = insertRec(node, key);
     }
 
     // Recursive function to insert a new key
-    Node insertRec(Node root, int key) {
-        if (root == null) {
-            root = new Node(key);
-            return root;
+    Node insertRec(Node node, int key) {
+        if (node == null) {
+            node = new Node(key);
+            return node;
         }
-        if (key < root.key)
-            root.left = insertRec(root.left, key);
-        else if (key > root.key)
-            root.right = insertRec(root.right, key);
-        return root;
+        if (key < node.key)
+            node.left = insertRec(node.left, key);
+        else if (key > node.key)
+            node.right = insertRec(node.right, key);
+        return node;
     }
 
     // Method to search for a key in the BST
     boolean search(int key) {
-        return searchRec(root, key);
+        return searchRec(node, key);
     }
 
     // Recursive function to search for a key
-    boolean searchRec(Node root, int key) {
-        if (root == null)
+    boolean searchRec(Node node, int key) {
+        if (node == null)
             return false;
-        if (root.key == key)
+        if (node.key == key)
             return true;
-        return key < root.key ? searchRec(root.left, key) : searchRec(root.right, key);
+        return key < node.key ? searchRec(node.left, key) : searchRec(node.right, key);
     }
 
     // Method for in-order traversal of the BST
     void inorder() {
-        inorderRec(root);
+        inorderRec(node);
     }
 
     // Recursive function for in-order traversal
-    void inorderRec(Node root) {
-        if (root != null) {
-            inorderRec(root.left);
-            System.out.print(root.key + " ");
-            inorderRec(root.right);
+    void inorderRec(Node node) {
+        if (node != null) {
+            inorderRec(node.left);
+            System.out.print(node.key + " ");
+            inorderRec(node.right);
         }
     }
 }
