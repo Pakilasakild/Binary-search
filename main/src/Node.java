@@ -1,11 +1,9 @@
-public class Node {
-    int data;
+class Node {
+    int key;
     Node left, right;
 
-    // Constructor to create a new node
-    Node(int value) {
-        data = value;
-        left = null;
-        right = null;
+    public Node(int item) {
+        key = item;
+        left = right = null;
     }
 }

@@ -1,62 +1,53 @@
-public class BinarySearchTree {
+class BinarySearchTree {
     Node root;
 
-    // Constructor to initialize the root of the tree
-    BinarySearchTree() {
+    public BinarySearchTree() {
         root = null;
     }
 
-    // Method to insert a new value into the tree
-    void insert(int value) {
-        root = insertRecursive(root, value);
+    // Method to insert a new key
+    void insert(int key) {
+        root = insertRec(root, key);
     }
 
-    // Recursive helper method for insertion
-    Node insertRecursive(Node root, int value) {
+    // Recursive function to insert a new key
+    Node insertRec(Node root, int key) {
         if (root == null) {
-            root = new Node(value);
+            root = new Node(key);
             return root;
         }
-
-        if (value < root.data) {
-            root.left = insertRecursive(root.left, value);
-        } else if (value > root.data) {
-            root.right = insertRecursive(root.right, value);
-        }
-
+        if (key < root.key)
+            root.left = insertRec(root.left, key);
+        else if (key > root.key)
+            root.right = insertRec(root.right, key);
         return root;
     }
 
-    // Method to perform in-order traversal of the tree
-    void inOrderTraversal() {
-        inOrderRecursive(root);
+    // Method to search for a key in the BST
+    boolean search(int key) {
+        return searchRec(root, key);
     }
 
-    // Recursive helper method for in-order traversal
-    void inOrderRecursive(Node root) {
+    // Recursive function to search for a key
+    boolean searchRec(Node root, int key) {
+        if (root == null)
+            return false;
+        if (root.key == key)
+            return true;
+        return key < root.key ? searchRec(root.left, key) : searchRec(root.right, key);
+    }
+
+    // Method for in-order traversal of the BST
+    void inorder() {
+        inorderRec(root);
+    }
+
+    // Recursive function for in-order traversal
+    void inorderRec(Node root) {
         if (root != null) {
-            inOrderRecursive(root.left);
-            System.out.print(root.data + " ");
-            inOrderRecursive(root.right);
+            inorderRec(root.left);
+            System.out.print(root.key + " ");
+            inorderRec(root.right);
         }
-    }
-
-    // Main method
-    public static void main(String[] args) {
-        BinarySearchTree bst = new BinarySearchTree();
-
-        // Insert values into the tree
-        bst.insert(4);
-        bst.insert(2);
-        bst.insert(6);
-        bst.insert(3);
-        bst.insert(1);
-        bst.insert(5);
-        bst.insert(7);
-
-        // Print the tree in sorted order
-        System.out.print("In-order Traversal: ");
-        bst.inOrderTraversal();
-        System.out.println();
     }
 }
